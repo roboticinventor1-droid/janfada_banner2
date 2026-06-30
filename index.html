@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بنر متحرک عشایر جانفدای لرستان</title>
+
+    <link rel="manifest" href="/Janfada-baner/manifest.json">
+    <meta name="theme-color" content="#0b6b3a">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="bg-glow/1"></div>
+    <div class="bg-glow/2"></div>
+
+    <div id="inputPage">
+        <div class="panel">
+            <div class="title">📢 بنر متحرک جانفدایان عشایر لرستان</div>
+
+            <div class="subtitle">
+                متن، رنگ و سرعت را تنظیم کنید
+            </div>
+
+            <input
+                type="text"
+                id="userText"
+                placeholder="متن مورد نظر را وارد کنید..."
+                oninput="updatePreview()"
+            >
+
+            <div class="section-title">
+                <i class="fa-solid fa-gauge-high"></i> سرعت حرکت
+            </div>
+            <input
+                class="slider"
+                type="range"
+                id="speed"
+                min="1"
+                max="5"
+                value="3"
+                oninput="updateSpeedLabel()"
+            >
+            <div id="speedLabel" class="value-label">🚶 متوسط</div>
+
+            <div class="section-title">
+                <i class="fa-solid fa-text-height"></i> اندازه متن بنر
+            </div>
+            <input
+                class="slider"
+                type="range"
+                id="fontSizeSlider"
+                min="30"
+                max="95"
+                value="80"
+                oninput="document.getElementById('fontSizeLabel').innerText = this.value + 'vh'"
+            >
+            <div id="fontSizeLabel" class="value-label">80vh</div>
+
+            <div class="section-title">
+                <i class="fa-solid fa-sliders"></i> قابلیت‌های پیشرفته
+            </div>
+            <div class="advanced-controls">
+                <button id="directionBtn" onclick="toggleDirection()">
+                    <i class="fa-solid fa-arrow-right"></i> جهت: چپ به راست
+                </button>
+                
+                <div class="effect-select-wrapper">
+                    <select id="effectSelect" onchange="changeEffect(this.value)">
+                        <option value="none">✨ بدون افکت ویژه</option>
+                        <option value="earthquake">🌋 افکت زلزله و لرزش شدید</option>
+                        <option value="magnifier">🔍 افکت ذره‌بین و موج حرکتی</option>
+                        <option value="fire">🔥 درخشش آتشین و ذوب متحرک</option>
+                        <option value="blink">⚡ چشمک‌زن سریع</option>
+                        <option value="neon">🚨 درخشش نئون حرارتی</option>
+                        <option value="rainbow">🌈 سایه رنگین‌کمانی پویا</option>
+                        <option value="glitch">📟 تابلوی LED نویزدار</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="section-title">
+                <i class="fa-solid fa-palette"></i> رنگ متن
+            </div>
+            <div class="color-picker">
+                <div class="color active" style="background: linear-gradient(135deg, #ffff00, #baba00)" data-color="#ffff00" onclick="selectColor(this)"></div>
+                <div class="color" style="background: linear-gradient(135deg, #ffffff, #cccccc)" data-color="#ffffff" onclick="selectColor(this)"></div>
+                <div class="color" style="background: linear-gradient(135deg, #00ff00, #00aa00)" data-color="#00ff00" onclick="selectColor(this)"></div>
+                <div class="color" style="background: linear-gradient(135deg, #00ffff, #00aaaa)" data-color="#00ffff" onclick="selectColor(this)"></div>
+                <div class="color" style="background: linear-gradient(135deg, #ff00ff, #aa00aa)" data-color="#ff00ff" onclick="selectColor(this)"></div>
+                <div class="color" style="background: linear-gradient(135deg, #ff4444, #cc1111)" data-color="#ff4444" onclick="selectColor(this)"></div>
+            </div>
+
+            <div class="section-title">
+                <i class="fa-solid fa-eye"></i> پیش نمایش
+            </div>
+            <div id="preview">متن نمونه</div>
+
+            <div id="sentenceMemoryPanel">
+                <select id="sentenceSelect"></select>
+                <div class="add-sentence-row">
+                    <input id="newSentence" type="text" placeholder="جمله جدید را بنویسید...">
+                    <button onclick="saveNewSentence()">
+                        <i class="fa-solid fa-plus"></i> ذخیره
+                    </button>
+                </div>
+            </div>
+
+            <button class="startBtn" onclick="startBanner()">
+                <i class="fa-solid fa-play"></i> نمایش بنر
+            </button>
+        </div>
+    </div>
+
+    <div id="bannerPage">
+        <button class="backBtn" onclick="goBack()">
+            <i class="fa-solid fa-arrow-right"></i> بازگشت
+        </button>
+        <div id="bannerText"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

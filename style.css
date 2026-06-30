@@ -296,15 +296,15 @@ body {
     /* غیرفعال کردن ترنزیشن برای حل باگ رفت و برگشت */
     transition: none !important; 
     
-    /* ترفند طلایی: فعال‌سازی شتاب‌دهنده سخت‌افزاری کارت گرافیک موبایل برای حرکت کاملاً روان */
+    /* فعال‌سازی شتاب‌دهنده سخت‌افزاری کارت گرافیک موبایل */
     will-change: transform, left;
 }
 
 /* ===================================================
-   نسخه بهینه‌شده و فوق‌العاده سبک افکت‌ها (بدون لگ)
+   فقط افکت‌های بهینه‌شده و فوق‌العاده روان (بدون لگ)
 =================================================== */
 
-/* ۱. افکت زلزله (عالی و روان) */
+/* ۱. افکت زلزله و تکان شدید */
 .earthquake-animation {
     animation: shakeEffect 0.15s infinite alternate;
     will-change: transform;
@@ -315,7 +315,7 @@ body {
     100% { transform: translateY(-50%) translateX(-1px) rotate(-0.5deg); }
 }
 
-/* ۲. افکت ذره‌بین چشمی بهینه‌شده (بسیار نرم و بدون افت فریم) */
+/* ۲. افکت ذره‌بین چشمی (بزرگنمایی موجی نرم) */
 .magnifier-animation {
     animation: waveZoomOptimized 1.5s infinite ease-in-out;
     will-change: transform;
@@ -325,62 +325,12 @@ body {
     50% { transform: translateY(-50%) scale(1.15); filter: brightness(1.25); }
 }
 
-/* ۳. افکت درخشش آتشین سبک (جایگزین لایه‌های سنگین سایه با تغییر روشنایی و رنگ) */
-.fire-animation {
-    animation: fireOptimized 0.6s infinite alternate ease-in-out;
-    will-change: filter, transform;
-}
-@keyframes fireOptimized {
-    0% { 
-        filter: drop-shadow(0px -4px 6px #ff4500) brightness(1.1);
-        transform: translateY(-51%) scaleY(1.02);
-    }
-  100% { 
-        filter: drop-shadow(0px -8px 12px #ffaa00) brightness(1.3);
-        transform: translateY(-49%) scaleY(0.98);
-    }
-}
-
-/* ۴. افکت نئون حرارتی سبک شده */
-.neon-animation {
-    animation: neonGlowOptimized 1.2s infinite alternate ease-in-out;
-    will-change: filter;
-}
-@keyframes neonGlowOptimized {
-    0% { filter: drop-shadow(0 0 4px currentColor) brightness(1); }
-    100% { filter: drop-shadow(0 0 15px currentColor) brightness(1.4); }
-}
-
-/* ۵. افکت تابلوی ماتریکس نویزدار (LED) */
-.glitch-animation {
-    animation: ledGlitch 0.8s infinite linear alternate-reverse;
-    will-change: filter;
-}
-.glitch-animation::before {
-    content: ''; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-    background: radial-gradient(rgba(0, 0, 0, 0) 2px, rgba(0, 0, 0, 0.6) 3px);
-    background-size: 5px 5px; z-index: 99; pointer-events: none;
-}
-@keyframes ledGlitch {
-    0% { filter: hue-rotate(0deg) saturate(1); }
-    50% { filter: brightness(1.2); }
-    100% { filter: hue-rotate(360deg) saturate(1.2); }
-}
-
-/* ۶. افکت چشمک‌زن سریع */
+/* ۳. افکت چشمک‌زن سریع */
 .blink-animation { 
     animation: fastBlink 0.3s infinite alternate; 
     will-change: opacity;
 }
-@keyframes fastBlink { 0% { opacity: 1; } 100% { opacity: 0.1; } }
-
-/* ۷. افکت سایه رنگین‌کمانی */
-.rainbow-animation { 
-    animation: rainbowShadow 3s infinite linear; 
-}
-@keyframes rainbowShadow {
-    0% { text-shadow: 3px 3px 8px #ff0000; }
-    33% { text-shadow: 3px -3px 8px #00ff00; }
-    66% { text-shadow: -3px 3px 8px #00ffff; }
-    100% { text-shadow: 3px 3px 8px #ff0000; }
+@keyframes fastBlink { 
+    0% { opacity: 1; } 
+    100% { opacity: 0.1; } 
 }

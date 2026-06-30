@@ -1,4 +1,4 @@
-const CACHE_NAME = "janfada-v8";
+const CACHE_NAME = "janfada-v9";
 
 const ASSETS = [
   "./",

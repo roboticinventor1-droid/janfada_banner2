@@ -291,74 +291,96 @@ body {
     top: 50%;
     transform: translateY(-50%);
     letter-spacing: 4px;
-    text-shadow: -4px -4px 0 #000, 4px -4px 0 #000, -4px 4px 0 #000, 4px 4px 0 #000;
-transition: none !important;
+    text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000;
+    
+    /* غیرفعال کردن ترنزیشن برای حل باگ رفت و برگشت */
+    transition: none !important; 
+    
+    /* ترفند طلایی: فعال‌سازی شتاب‌دهنده سخت‌افزاری کارت گرافیک موبایل برای حرکت کاملاً روان */
+    will-change: transform, left;
 }
 
+/* ===================================================
+   نسخه بهینه‌شده و فوق‌العاده سبک افکت‌ها (بدون لگ)
+=================================================== */
 
-/* ---------- کدهای افکت‌های جدید و قدیمی ---------- */
-
-/* ۱. افکت زلزله و تکان شدید فیزیکی */
+/* ۱. افکت زلزله (عالی و روان) */
 .earthquake-animation {
     animation: shakeEffect 0.15s infinite alternate;
-       transition: none !important;
+    will-change: transform;
 }
 @keyframes shakeEffect {
     0% { transform: translateY(-52%) translateX(-2px); }
-    50% { transform: translateY(-47%) translateX(3px) rotate(0.5deg); }
+    50% { transform: translateY(-48%) translateX(3px) rotate(0.5deg); }
     100% { transform: translateY(-50%) translateX(-1px) rotate(-0.5deg); }
 }
 
-/* ۲. افکت ذره‌بین چشمی (بزرگنمایی موجی در مرکز) */
+/* ۲. افکت ذره‌بین چشمی بهینه‌شده (بسیار نرم و بدون افت فریم) */
 .magnifier-animation {
-    animation: waveZoom 2s infinite ease-in-out;
+    animation: waveZoomOptimized 1.5s infinite ease-in-out;
+    will-change: transform;
 }
-@keyframes waveZoom {
+@keyframes waveZoomOptimized {
     0%, 100% { transform: translateY(-50%) scale(1); filter: brightness(1); }
-    50% { transform: translateY(-50%) scale(1.18); filter: brightness(1.3); text-shadow: 0 0 30px currentColor; }
+    50% { transform: translateY(-50%) scale(1.15); filter: brightness(1.25); }
 }
 
-/* ۳. افکت درخشش آتشین و ذوب گدازه‌ای */
+/* ۳. افکت درخشش آتشین سبک (جایگزین لایه‌های سنگین سایه با تغییر روشنایی و رنگ) */
 .fire-animation {
-    animation: moltenFire 1s infinite alternate ease-in-out;
+    animation: fireOptimized 0.6s infinite alternate ease-in-out;
+    will-change: filter, transform;
 }
-@keyframes moltenFire {
-    0% { text-shadow: 0 -6px 4px #ff3300, 0 -12px 10px #ff8800, 0 -18px 20px #ffaa00, -4px -4px 0 #000, 4px 4px 0 #000; }
-    100% { text-shadow: 0 -3px 2px #ff2200, 0 -8px 6px #ff6600, 0 -14px 15px #ffcc00, -4px -4px 0 #000, 4px 4px 0 #000; }
-}
-
-/* ۴. افکت چشمک‌زن */
-.blink-animation { animation: fastBlink 0.4s infinite alternate; }
-@keyframes fastBlink { 0% { opacity: 1; } 100% { opacity: 0.1; } }
-
-/* ۵. افکت نئون حرارتی */
-.neon-animation { animation: neonGlow 1.5s infinite alternate ease-in-out; }
-@keyframes neonGlow {
-    0% { text-shadow: 0 0 10px currentColor, 0 0 30px currentColor, 0 0 50px currentColor; }
-    100% { text-shadow: 0 0 5px currentColor, 0 0 15px currentColor, 0 0 25px rgba(255,255,255,0.5); }
+@keyframes fireOptimized {
+    0% { 
+        filter: drop-shadow(0px -4px 6px #ff4500) brightness(1.1);
+        transform: translateY(-51%) scaleY(1.02);
+    }
+  100% { 
+        filter: drop-shadow(0px -8px 12px #ffaa00) brightness(1.3);
+        transform: translateY(-49%) scaleY(0.98);
+    }
 }
 
-/* ۶. افکت سایه رنگین‌کمانی */
-.rainbow-animation { animation: rainbowShadow 4s infinite linear; }
-@keyframes rainbowShadow {
-    0% { text-shadow: 4px 4px 15px #ff0000, -4px -4px 15px #00ff00; }
-    25% { text-shadow: 4px -4px 15px #00ffff, -4px 4px 15px #ff00ff; }
-    50% { text-shadow: -4px -4px 15px #ffff00, 4px 4px 15px #0000ff; }
-    75% { text-shadow: -4px 4px 15px #ff00ff, 4px -4px 15px #00ff00; }
-    100% { text-shadow: 4px 4px 15px #ff0000, -4px -4px 15px #00ff00; }
+/* ۴. افکت نئون حرارتی سبک شده */
+.neon-animation {
+    animation: neonGlowOptimized 1.2s infinite alternate ease-in-out;
+    will-change: filter;
+}
+@keyframes neonGlowOptimized {
+    0% { filter: drop-shadow(0 0 4px currentColor) brightness(1); }
+    100% { filter: drop-shadow(0 0 15px currentColor) brightness(1.4); }
 }
 
-/* ۷. افکت تابلوی ماتریکس نویزدار */
-.glitch-animation { position: relative; animation: ledGlitch 1s infinite linear alternate-reverse; }
+/* ۵. افکت تابلوی ماتریکس نویزدار (LED) */
+.glitch-animation {
+    animation: ledGlitch 0.8s infinite linear alternate-reverse;
+    will-change: filter;
+}
 .glitch-animation::before {
     content: ''; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-    background: radial-gradient(rgba(0, 0, 0, 0) 3px, rgba(0, 0, 0, 0.7) 4px);
-    background-size: 6px 6px; z-index: 99; pointer-events: none;
+    background: radial-gradient(rgba(0, 0, 0, 0) 2px, rgba(0, 0, 0, 0.6) 3px);
+    background-size: 5px 5px; z-index: 99; pointer-events: none;
 }
 @keyframes ledGlitch {
-    0% { transform: translateY(-50%) skew(0deg); filter: hue-rotate(0deg); }
-    10% { transform: translateY(-48%) skew(-2deg); }
-    20% { transform: translateY(-52%) skew(2deg); filter: brightness(1.2); }
-    21% { transform: translateY(-50%) skew(0deg); }
-    100% { transform: translateY(-50%) skew(0deg); filter: hue-rotate(360deg); }
+    0% { filter: hue-rotate(0deg) saturate(1); }
+    50% { filter: brightness(1.2); }
+    100% { filter: hue-rotate(360deg) saturate(1.2); }
+}
+
+/* ۶. افکت چشمک‌زن سریع */
+.blink-animation { 
+    animation: fastBlink 0.3s infinite alternate; 
+    will-change: opacity;
+}
+@keyframes fastBlink { 0% { opacity: 1; } 100% { opacity: 0.1; } }
+
+/* ۷. افکت سایه رنگین‌کمانی */
+.rainbow-animation { 
+    animation: rainbowShadow 3s infinite linear; 
+}
+@keyframes rainbowShadow {
+    0% { text-shadow: 3px 3px 8px #ff0000; }
+    33% { text-shadow: 3px -3px 8px #00ff00; }
+    66% { text-shadow: -3px 3px 8px #00ffff; }
+    100% { text-shadow: 3px 3px 8px #ff0000; }
 }

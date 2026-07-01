@@ -169,15 +169,15 @@ let defaultSentences=[
     " نه سازش، نه تسلیم؛ نبرد با آمریکا ",
     " با آل علی هرکه در افتاد ور افتاد ",
     " تا این پرچم بلنده، ایرانی سر بلنده ",
+    " Iran is the nation of Imam Husayn ",
+    "All who stand with Imam Husayn are destined for victory",
+    "Seek to know Imam Husayn before death finds you",
     "Iran is the nation of Imam Husayn",
-"All who stand with Imam Husayn are destined for victory",
-"Seek to know Imam Husayn before death finds you",
-"Iran is the nation of Imam Husayn",
-"The Promised Messiah stands with Iran, while Satan stands with Epstein",
-"People of the world, know this: America is the Great Satan",
-"Your silence is part of the system",
-"Funded in your name. Forgotten by your conscience",
-"If you pay for it, you are not outside it"
+    "The Promised Messiah stands with Iran, while Satan stands with Epstein",
+    "People of the world, know this: America is the Great Satan",
+    "Your silence is part of the system",
+    "Funded in your name. Forgotten by your conscience",
+    "If you pay for it, you are not outside it"
 ];
 
 let saved = JSON.parse(localStorage.getItem('sentences') || 'null');

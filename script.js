@@ -146,7 +146,7 @@ function goBack(){
 updatePreview();
 updateSpeedLabel();
 
-/* ---------- مدیریت حافظه جملات (LocalStorage) ---------- */
+/* ---------- مدیریت حافظه جملات (LocalStorage) - اصلاح‌شده و هوشمند ---------- */
 let defaultSentences=[
     "مرگ بر آمریکا",
     "آمریکا شیطان بزرگ و اسرائیل غده سرطانی است",
@@ -172,9 +172,23 @@ let defaultSentences=[
 ];
 
 let saved = JSON.parse(localStorage.getItem('sentences') || 'null');
+
 if(!saved){
+    // بار اول: کل آرایه ذخیره می‌شود
     saved = [...defaultSentences];
     localStorage.setItem('sentences', JSON.stringify(saved));
+} else {
+    // دفعات بعدی: جملات جدیدی که در لیست گوشی نیستند را بدون دست زدن به بقیه اضافه می‌کند
+    let updated = false;
+    defaultSentences.forEach(sentence => {
+        if (!saved.includes(sentence.trim())) {
+            saved.push(sentence.trim());
+            updated = true;
+        }
+    });
+    if (updated) {
+        localStorage.setItem('sentences', JSON.stringify(saved));
+    }
 }
 
 function getSentences(){

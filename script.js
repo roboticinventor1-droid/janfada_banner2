@@ -1,6 +1,6 @@
 let selectedColor = "#ffff00";
 let animationId = null;
-let moveDirection = "ltr"; // پیش‌فرض چپ به راست
+let moveDirection = "ltr"; 
 let currentEffect = "none";
 
 /* ---------- سرعت ---------- */
@@ -64,6 +64,9 @@ function startBanner(){
         return;
     }
 
+    // بستن اجباری کیبورد برای جلوگیری از برهم‌خوردن موقعیت صفحات در موبایل
+    document.getElementById("userText").blur();
+
     const elem = document.documentElement;
     if (elem.requestFullscreen) {
         elem.requestFullscreen();
@@ -99,8 +102,6 @@ function startBanner(){
             case 5: pixelsPerFrame = 25; break;
         }
 
-        // --- اصلاح منطق نقطه شروع بر اساس جهت حرکت ---
-        // اگر حرکت از چپ به راست (ltr) است، متن باید کاملاً در پشت لبه چپ (منفی عرض متن) پنهان باشد.
         let x = (moveDirection === "rtl") ? window.innerWidth : -textWidth;
         cancelAnimationFrame(animationId);
 
@@ -108,12 +109,12 @@ function startBanner(){
             if (moveDirection === "rtl") {
                 x -= pixelsPerFrame;
                 if(x < -textWidth){
-                    x = window.innerWidth; // برگشت به لبه راست مانیتور
+                    x = window.innerWidth;
                 }
             } else {
                 x += pixelsPerFrame;
-                if(x > window.innerWidth){ 
-                    x = -textWidth; // اصلاح باگ: بازگشت دقیق به پشت لبه چپ مانیتور
+                if(x > window.innerWidth){
+                    x = -textWidth;
                 }
             }
             
@@ -121,7 +122,7 @@ function startBanner(){
             animationId = requestAnimationFrame(animate);
         }
         animate();
-    }, 100);
+    }, 150);
 }
 
 /* ---------- بازگشت ---------- */
@@ -136,6 +137,10 @@ function goBack(){
     document.getElementById("bannerText").className = "";
     document.getElementById("bannerPage").style.display="none";
     document.getElementById("inputPage").style.display="flex";
+
+    // ترفند صفر کردن اسکرول برای بازگرداندن کادر دقیقاً به وسط مانیتور گوشی
+    window.scrollTo(0, 0);
+    document.body.scrollTop = 0;
 }
 
 updatePreview();

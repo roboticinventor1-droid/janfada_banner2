@@ -16,6 +16,7 @@
     <div class="bg-glow/1"></div>
     <div class="bg-glow/2"></div>
 
+    <!-- تنظیمات -->
     <div id="inputPage">
         <div class="panel">
             <div class="title">📢 بنر متحرک جانفدایان عشایر لرستان</div>
@@ -31,6 +32,7 @@
                 oninput="updatePreview()"
             >
 
+            <!-- سرعت -->
             <div class="section-title">
                 <i class="fa-solid fa-gauge-high"></i> سرعت حرکت
             </div>
@@ -45,6 +47,7 @@
             >
             <div id="speedLabel" class="value-label">🚶 متوسط</div>
 
+            <!-- اندازه متن -->
             <div class="section-title">
                 <i class="fa-solid fa-text-height"></i> اندازه متن بنر
             </div>
@@ -59,6 +62,7 @@
             >
             <div id="fontSizeLabel" class="value-label">80vh</div>
 
+            <!-- تنظیمات پیشرفته -->
             <div class="section-title">
                 <i class="fa-solid fa-sliders"></i> قابلیت‌های پیشرفته
             </div>
@@ -77,10 +81,11 @@
                 </div>
             </div>
 
+            <!-- رنگ متن -->
             <div class="section-title">
                 <i class="fa-solid fa-palette"></i> رنگ متن
             </div>
-            <div class="color-picker">
+            <div class="color-picker text-colors">
                 <div class="color active" style="background: linear-gradient(135deg, #ffff00, #baba00)" data-color="#ffff00" onclick="selectColor(this)"></div>
                 <div class="color" style="background: linear-gradient(135deg, #ffffff, #cccccc)" data-color="#ffffff" onclick="selectColor(this)"></div>
                 <div class="color" style="background: linear-gradient(135deg, #00ff00, #00aa00)" data-color="#00ff00" onclick="selectColor(this)"></div>
@@ -89,11 +94,34 @@
                 <div class="color" style="background: linear-gradient(135deg, #ff4444, #cc1111)" data-color="#ff4444" onclick="selectColor(this)"></div>
             </div>
 
+            <!-- رنگ پس‌زمینه بنر -->
+            <div class="section-title">
+                <i class="fa-solid fa-fill-drip"></i> رنگ پس‌زمینه بنر
+            </div>
+            <div class="color-picker bg-colors">
+                <!-- مشکی خالص -->
+                <div class="color active" style="background: #000000; border: 1px solid rgba(255,255,255,0.3);" data-color="#000000" onclick="selectBgColor(this)"></div>
+                <!-- سفید خالص -->
+                <div class="color" style="background: #ffffff; border: 1px solid rgba(0,0,0,0.2);" data-color="#ffffff" onclick="selectBgColor(this)"></div>
+                <!-- قرمز تند انقلابی -->
+                <div class="color" style="background: #ff0000;" data-color="#ff0000" onclick="selectBgColor(this)"></div>
+                <!-- قرمز جگری (حماسی) -->
+                <div class="color" style="background: #8b0000;" data-color="#8b0000" onclick="selectBgColor(this)"></div>
+                <!-- سبز یشمی (مذهبی/عشایری) -->
+                <div class="color" style="background: #0b6b3a;" data-color="#0b6b3a" onclick="selectBgColor(this)"></div>
+                <!-- سورمه ای تیره (اقتدار) -->
+                <div class="color" style="background: #1e3a8a;" data-color="#1e3a8a" onclick="selectBgColor(this)"></div>
+                <!-- بنفش تیره (خاص) -->
+                <div class="color" style="background: #4c1d95;" data-color="#4c1d95" onclick="selectBgColor(this)"></div>
+            </div>
+
+            <!-- پیش نمایش -->
             <div class="section-title">
                 <i class="fa-solid fa-eye"></i> پیش نمایش
             </div>
             <div id="preview">متن نمونه</div>
 
+            <!-- مدیریت جملات -->
             <div id="sentenceMemoryPanel">
                 <select id="sentenceSelect"></select>
                 <div class="add-sentence-row">
@@ -110,6 +138,7 @@
         </div>
     </div>
 
+    <!-- بنر -->
     <div id="bannerPage">
         <button class="backBtn" onclick="goBack()">
             <i class="fa-solid fa-arrow-right"></i> بازگشت

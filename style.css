@@ -196,6 +196,7 @@ html, body {
     font-size: 32px;
     font-weight: bold;
     margin-top: 10px;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 #sentenceMemoryPanel {

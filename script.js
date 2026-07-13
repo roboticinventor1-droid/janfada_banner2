@@ -1,4 +1,5 @@
 let selectedColor = "#ffff00";
+let selectedBgColor = "#000000"; // رنگ پس‌زمینه پیش‌فرض
 let animationId = null;
 let moveDirection = "ltr"; 
 let currentEffect = "none";
@@ -33,11 +34,19 @@ function changeEffect(val) {
     currentEffect = val;
 }
 
-/* ---------- رنگ ---------- */
+/* ---------- رنگ متن ---------- */
 function selectColor(el){
-    document.querySelectorAll(".color").forEach(c => c.classList.remove("active"));
+    document.querySelectorAll(".text-colors .color").forEach(c => c.classList.remove("active"));
     el.classList.add("active");
     selectedColor = el.dataset.color;
+    updatePreview();
+}
+
+/* ---------- رنگ پس‌زمینه ---------- */
+function selectBgColor(el){
+    document.querySelectorAll(".bg-colors .color").forEach(c => c.classList.remove("active"));
+    el.classList.add("active");
+    selectedBgColor = el.dataset.color;
     updatePreview();
 }
 
@@ -52,7 +61,8 @@ function updatePreview(){
 
     preview.innerText = txt || "متن نمونه";
     preview.style.color = selectedColor;
-    preview.style.textShadow='none';
+    preview.style.backgroundColor = selectedBgColor; // اعمال روی باکس پیش‌نمایش
+    preview.style.textShadow = 'none';
 }
 
 /* ---------- نمایش بنر ---------- */
@@ -75,7 +85,10 @@ function startBanner(){
     }
 
     document.getElementById("inputPage").style.display="none";
-    document.getElementById("bannerPage").style.display="flex";
+    
+    const bannerPage = document.getElementById("bannerPage");
+    bannerPage.style.display="flex";
+    bannerPage.style.backgroundColor = selectedBgColor; // اعمال رنگ پس‌زمینه انتخابی روی کل صفحه بنر
 
     const banner = document.getElementById("bannerText");
     banner.innerText = text;
@@ -183,11 +196,9 @@ let defaultSentences=[
 let saved = JSON.parse(localStorage.getItem('sentences') || 'null');
 
 if(!saved){
-    // بار اول: کل آرایه ذخیره می‌شود
     saved = [...defaultSentences];
     localStorage.setItem('sentences', JSON.stringify(saved));
 } else {
-    // دفعات بعدی: جملات جدیدی که در لیست گوشی نیستند را بدون دست زدن به بقیه اضافه می‌کند
     let updated = false;
     defaultSentences.forEach(sentence => {
         if (!saved.includes(sentence.trim())) {
